@@ -14,7 +14,7 @@ class ProductsTable extends Component
     public $orderBy = 'name';
     public $orderAsc = true;
     public $isOpen = 0;
-    public $name, $price, $brand, $stock;
+    public $name, $price, $brand, $stock, $product_id;
 
     public function render()
     {
@@ -27,7 +27,7 @@ class ProductsTable extends Component
     public function create()
     {
         $this->resetInputFields();
-        $this->openModel();
+        $this->openModal();
     }
 
     public function openModal()

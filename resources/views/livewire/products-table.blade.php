@@ -31,7 +31,7 @@
                     <div class="col-md-1">
                         <button wire:click="create()" class="btn btn-success mt-1 mt-1" style="margin-left:-10px">Add Product</button>
                         @if($isOpen)
-                            @include('livewire.create-borrowed')
+                            @include('livewire.productscreate')
                         @endif
                     </div>
                 </div>
