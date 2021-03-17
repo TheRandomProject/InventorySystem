@@ -13,7 +13,6 @@ class ProductsTable extends Component
     public $search = '';
     public $orderBy = 'name';
     public $orderAsc = true;
-    public $isOpen = 0;
     public $name, $price, $brand, $stock, $product_id;
     public $deleteAction = '';
     public function render()
@@ -27,17 +26,6 @@ class ProductsTable extends Component
     public function create()
     {
         $this->resetInputFields();
-        $this->openModal();
-    }
-
-    public function openModal()
-    {
-        $this->isOpen = true;
-    }
-
-    public function closeModal()
-    {
-        $this->isOpen = false;
     }
 
     private function resetInputFields()
@@ -69,7 +57,6 @@ class ProductsTable extends Component
             $this->product_id ? 'Product Have Been Updated Successfully ' : 'Product Have Been Created Successfully'
         );
 
-        $this->closeModal();
         $this->resetInputFields();
     }
 
