@@ -13,8 +13,7 @@ class ProductsTable extends Component
     public $search = '';
     public $orderBy = 'name';
     public $orderAsc = true;
-    public $name, $price, $brand, $stock, $product_id;
-    public $deleteAction = '';
+    public $name, $price, $brand, $stock, $product_id, $deleteAction;
     public function render()
     {
         return view('livewire.products-table', [
