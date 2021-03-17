@@ -38,10 +38,7 @@
                         </select>
                     </div>
                     <div class="col-md-1">
-                        <button wire:click="create()" class="btn btn-success mt-1 mt-1" style="margin-left:-10px">Add Product</button>
-                        @if($isOpen)
-                            @include('livewire.productscreate')
-                        @endif
+                        <button class="btn btn-success mt-1 mt-1" style="margin-left:-10px" data-toggle="modal" data-target="#CreateModal"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -68,7 +65,7 @@
                                     <td>{{$product->brand}}</td>
                                     <td>{{$product->stock}}</td>
                                     <td classs=" px-4 py-2 w-full">
-                                        <button wire:click="edit({{ $product->id }}, 'update')" class="btn btn-success border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"><i class="fas fa-edit"></i></button>
+                                        <button wire:click="edit({{ $product->id }})" class="btn btn-success" data-toggle="modal" data-target="#updateModal"><i class="fas fa-edit"></i></button>
                                         <button type="button" wire:click="deleteId({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
@@ -88,8 +85,119 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
+    <!-- Create Modal -->
+    <form>
+        <div wire:ignore.self class="modal fade" id="CreateModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true close-btn">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                                <input type="text"
+                                    class="@error('name') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Name" wire:model="name" required>
+                                @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
+                                <input type="number"
+                                    class="@error('price') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Price" wire:model="price" required>
+                                @error('price') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Brand:</label>
+                                <input type="text"
+                                    class="@error('brand') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Brand" wire:model="brand" required>
+                                @error('brand') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Stock:</label>
+                                <input type="number"
+                                    class="@error('stock') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Stock" wire:model="stock" required>
+                                @error('stock') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                        <button wire:click.prevent="store()" type="button"  class="btn btn-success close-modal">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Update Modal -->
+    <form>
+        <div wire:ignore.self class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true close-btn">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                                <input type="text"
+                                    class="@error('name') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Name" wire:model="name" required>
+                                @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
+                                <input type="number"
+                                    class="@error('price') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Price" wire:model="price" required>
+                                @error('price') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Brand:</label>
+                                <input type="text"
+                                    class="@error('brand') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Brand" wire:model="brand" required>
+                                @error('brand') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="exampleFormControlInput1"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Stock:</label>
+                                <input type="number"
+                                    class="@error('stock') is-invalid @enderror form-control w-full mt-1 block  rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    id="exampleFormControlInput1" placeholder="Enter Stock" wire:model="stock" required>
+                                @error('stock') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                        <button wire:click.prevent="store()" type="button"  class="btn btn-success close-modal">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Delete Modal -->
     <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -110,29 +218,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    window.addEventListener('closeModal', event => {
-        $("#modalForm").modal('hide');
-    })
-    window.addEventListener('openModal', event => {
-        $("#modalForm").modal('show');
-    })
-    window.addEventListener('openDeleteModal', event => {
-        $("#modalFormDelete").modal('show');
-    })
-    window.addEventListener('closeDeleteModal', event => {
-        $("#modalFormDelete").modal('hide');
-    })
-    // Opens the show photos modal
-    window.addEventListener('openModalShowPhotos', event => {
-        $("#modalShowPhotos").modal('show');
-    })
-
-    $(document).ready(function(){
-        // This event is triggered when the modal is hidden
-        $("#modalForm").on('hidden.bs.modal', function(){
-            livewire.emit('forcedCloseModal');
-        });
-    });
-</script>
