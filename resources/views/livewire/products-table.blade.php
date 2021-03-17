@@ -69,7 +69,7 @@
                                     <td>{{$product->stock}}</td>
                                     <td classs=" px-4 py-2 w-full">
                                         <button wire:click="edit({{ $product->id }}, 'update')" class="btn btn-success border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"><i class="fas fa-edit"></i></button>
-                                        <button type="button" wire:click="deleteId({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete</button>
+                                        <button type="button" wire:click="deleteId({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
