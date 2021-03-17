@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn btn-success mt-1 mt-1" style="margin-left:-10px" data-toggle="modal" data-target="#CreateModal"><i class="fas fa-plus"></i></button>
+                        <button wire:click="create()" class="btn btn-success mt-1 mt-1" style="margin-left:-10px" data-toggle="modal" data-target="#CreateModal"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                        <button wire:click.prevent="store()" type="button"  class="btn btn-success close-modal">Create</button>
+                        <button wire:click.prevent="store()" type="button"  class="btn btn-success close-modal" data-dismiss="modal">Create</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +191,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                        <button wire:click.prevent="store()" type="button"  class="btn btn-success close-modal">Update</button>
+                        <button wire:click.prevent="store()" type="button"  class="btn btn-success close-modal" data-dismiss="modal">Update</button>
                     </div>
                 </div>
             </div>

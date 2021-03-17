@@ -22,12 +22,8 @@ class ProductsTable extends Component
                 ->paginate(10),
         ]);
     }
-    public function create()
-    {
-        $this->resetInputFields();
-    }
 
-    private function resetInputFields()
+    public function create()
     {
         $this->name  = '';
         $this->price = '';
@@ -55,8 +51,6 @@ class ProductsTable extends Component
             'message',
             $this->product_id ? 'Product Have Been Updated Successfully ' : 'Product Have Been Created Successfully'
         );
-
-        $this->resetInputFields();
     }
 
     public function edit($id)
