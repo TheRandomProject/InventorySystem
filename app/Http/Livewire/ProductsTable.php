@@ -15,7 +15,7 @@ class ProductsTable extends Component
     public $orderAsc = true;
     public $isOpen = 0;
     public $name, $price, $brand, $stock, $product_id;
-
+    public $deleteAction = '';
     public function render()
     {
         return view('livewire.products-table', [
@@ -52,9 +52,9 @@ class ProductsTable extends Component
     {
         $this->validate([
             'name' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'brand' => 'required',
-            'stock' => 'required',
+            'stock' => 'required|numeric',
         ]);
 
         Products::updateOrCreate(['id' => $this->product_id], [
@@ -66,7 +66,7 @@ class ProductsTable extends Component
 
         session()->flash(
             'message',
-            $this->product_id ? 'Product Have Been Updated Successfully' : 'Product Have Been Created Successfully'
+            $this->product_id ? 'Product Have Been Updated Successfully ' : 'Product Have Been Created Successfully'
         );
 
         $this->closeModal();
@@ -80,16 +80,23 @@ class ProductsTable extends Component
         $this->price = $product->price;
         $this->brand = $product->brand;
         $this->stock = $product->stock;
+        $this->product_id = $id;
 
         $this->openModal();
     }
 
-    public function delete($id)
+    public function deleteId($id)
     {
-        Products::find($id)->delete();
+        $this->deleteAction = $id;
+    }
+
+
+    public function deleteAction()
+    {
+        Products::find($this->deleteAction)->delete();
         session()->flash(
             'message',
-            'Product Have Been Deleted Successfully'
+            'Product Have Been Deleted Successfully '
         );
     }
 }

@@ -1,5 +1,14 @@
 <div class="row">
     <div class="col py-4">
+
+        <div class="col-md-12 mt-2">
+            @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
+        </div>
+
         <div class="card card-small mb-4">
             <div class="card-header border-bottom">
                 <div class="row">
@@ -60,7 +69,7 @@
                                     <td>{{$product->stock}}</td>
                                     <td classs=" px-4 py-2 w-full">
                                         <button wire:click="edit({{ $product->id }}, 'update')" class="btn btn-success border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"><i class="fas fa-edit"></i></button>
-                                        <button wire:click="delete({{ $product->id }})" class="btn btn-danger border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="button" wire:click="deleteId({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,24 +88,25 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="modalFormDelete" tabindex="-1" aria-labelledby="modalFormDeletePost" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="modalFormDeletePost">Delete Item</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <h3>Do you wish to continue?</h3>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button wire:click="deleteProduct" type="button" class="btn btn-primary">Yes</button>
-        </div>
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true close-btn">×</span>
+                    </button>
+                </div>
+               <div class="modal-body">
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                    <button type="button" wire:click.prevent="deleteAction()" class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
