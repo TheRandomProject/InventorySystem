@@ -81,8 +81,6 @@ class ProductsTable extends Component
         $this->brand = $product->brand;
         $this->stock = $product->stock;
         $this->product_id = $id;
-
-        $this->openModal();
     }
 
     public function deleteId($id)
