@@ -16,10 +16,14 @@ class ProductsSeeder extends Seeder
         $faker = \Faker\Factory::create();
         for ($i = 1; $i <= 100; $i++) {
             \App\Models\Products::create([
-                'name' => $faker->name,
-                'price' => $faker->numberBetween(100, 1000),
-                'brand' => $faker->company,
-                'stock' => $faker->numberBetween(100, 1000),
+                'description' => $faker->company,
+                'ref' => $faker->numberBetween(100, 1000),
+                'lot' => $faker->numberBetween(100, 1000),
+                'expiry' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+30 years'),
+                'quantity' => $faker->numberBetween(100, 1000),
+                'incomingdate' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+30 years'),
+                'asof' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+30 years'),
+                'ageing' => $faker->numberBetween(100, 1000),
             ]);
         }
     }
