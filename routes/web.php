@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Livewire\ProductsTable;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
+Route::get('/customers', [CustomersController::class, 'index'])->name('customers');
 require_once __DIR__ . '/jetstream.php';
 
 require_once __DIR__ . '/fortify.php';

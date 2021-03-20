@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class ProductsSeeder extends Seeder
+class CustomersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,10 @@ class ProductsSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         for ($i = 1; $i <= 100; $i++) {
-            \App\Models\Products::create([
+            \App\Models\Customers::create([
                 'name' => $faker->name,
-                'price' => $faker->numberBetween(100, 1000),
-                'brand' => $faker->company,
-                'stock' => $faker->numberBetween(100, 1000),
+                'address' => $faker->address,
+                'contact' => $faker->phoneNumber,
             ]);
         }
     }
