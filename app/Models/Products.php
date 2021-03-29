@@ -10,19 +10,26 @@ class Products extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'brand',
-        'price',
-        'stock'
+        'description',
+        'ref',
+        'lot',
+        'expiry',
+        'quantity',
+        'incomingdate',
+        'asof',
+        'ageing'
     ];
 
     public static function search($search)
     {
         return empty($search) ? static::query()
             : static::query()->where('id', 'like', '%' . $search . '%')
-            ->orWhere('name', 'like', '%' . $search . '%')
-            ->orWhere('brand', 'like', '%' . $search . '%')
-            ->orWhere('price', 'like', '%' . $search . '%')
-            ->orWhere('stock', 'like', '%' . $search . '%');
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->orWhere('ref', 'like', '%' . $search . '%')
+            ->orWhere('lot', 'like', '%' . $search . '%')
+            ->orWhere('quantity', 'like', '%' . $search . '%')
+            ->orWhere('incomingdate', 'like', '%' . $search . '%')
+            ->orWhere('asof', 'like', '%' . $search . '%')
+            ->orWhere('ageing', 'like', '%' . $search . '%');
     }
 }

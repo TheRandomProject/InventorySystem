@@ -27,10 +27,6 @@
                         <select wire:model="orderBy"
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
                             <option value="id">ID</option>
-                            <option value="name">Name</option>
-                            <option value="price">Price</option>
-                            <option value="brand">Brand</option>
-                            <option value="stock">Stock</option>
                         </select>
                     </div>
                     <div class="col-md-2">
@@ -63,10 +59,14 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->brand}}</td>
-                                    <td>{{$product->stock}}</td>
+                                    <td>{{$product->description}}</td>
+                                    <td>{{$product->ref}}</td>
+                                    <td>{{$product->lot}}</td>
+                                    <td>{{$product->expiry}}</td>
+                                    <td>{{$product->quantity}}</td>
+                                    <td>{{$product->incomingdate}}</td>
+                                    <td>{{$product->asof}}</td>
+                                    <td>{{$product->ageing}}</td>
                                     <td classs=" px-4 py-2 w-full">
                                         <button wire:click="edit({{ $product->id }})" class="btn btn-success" data-toggle="modal" data-target="#updateModal"><i class="fas fa-edit"></i></button>
                                         <button type="button" wire:click="deleteId({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i></button>

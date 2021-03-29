@@ -11,7 +11,7 @@ class ProductsTable extends Component
     use WithPagination;
 
     public $search = '';
-    public $orderBy = 'name';
+    public $orderBy = 'id';
     public $orderAsc = true;
     public $name, $price, $brand, $stock, $product_id, $deleteAction;
     public function render()
