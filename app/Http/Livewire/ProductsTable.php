@@ -13,7 +13,7 @@ class ProductsTable extends Component
     public $search = '';
     public $orderBy = 'id';
     public $orderAsc = true;
-    public $name, $price, $brand, $stock, $product_id, $deleteAction;
+    public $description, $ref, $lot, $expiry, $quantity, $incomingdate, $asof, $ageing, $product_id, $deleteAction;
     public function render()
     {
         return view('livewire.products-table', [
@@ -25,26 +25,38 @@ class ProductsTable extends Component
 
     public function create()
     {
-        $this->name  = '';
-        $this->price = '';
-        $this->brand = '';
-        $this->stock = '';
+        $this->description      = '';
+        $this->ref              = '';
+        $this->lot              = '';
+        $this->expiry           = '';
+        $this->quantity         = '';
+        $this->incomingdate     = '';
+        $this->asof             = '';
+        $this->ageing           = '';
     }
 
     public function store()
     {
         $this->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'brand' => 'required',
-            'stock' => 'required|numeric',
+            'description'   => 'required',
+            'ref'           => 'required',
+            'lot'           => 'required',
+            'expiry'        => 'required',
+            'quantity'      => 'required',
+            'incomingdate'  => 'required',
+            'asof'          => 'required',
+            'ageing'        => 'required',
         ]);
 
         Products::updateOrCreate(['id' => $this->product_id], [
-            'name' => $this->name,
-            'price' => $this->price,
-            'brand' => $this->brand,
-            'stock' => $this->stock
+            'description'   => $this->description,
+            'ref'           => $this->ref,
+            'lot'           => $this->lot,
+            'expiry'        => $this->expiry,
+            'quantity'      => $this->quantity,
+            'incomingdate'  => $this->incomingdate,
+            'asof'          => $this->asof,
+            'ageing'        => $this->ageing,
         ]);
 
         session()->flash(
@@ -56,11 +68,15 @@ class ProductsTable extends Component
     public function edit($id)
     {
         $product = Products::findOrFail($id);
-        $this->name = $product->name;
-        $this->price = $product->price;
-        $this->brand = $product->brand;
-        $this->stock = $product->stock;
-        $this->product_id = $id;
+        $this->description      = $product->description;
+        $this->ref              = $product->ref;
+        $this->lot              = $product->lot;
+        $this->expiry           = $product->expiry;
+        $this->quantity         = $product->quantity;
+        $this->incomingdate     = $product->incomingdate;
+        $this->asof             = $product->asof;
+        $this->ageing           = $product->ageing;
+        $this->product_id       = $id;
     }
 
     public function deleteId($id)
